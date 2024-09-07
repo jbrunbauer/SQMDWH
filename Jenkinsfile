@@ -1,6 +1,6 @@
 /**
  * Author:      Joachim Brunbauer
- * Create Date: 2024-09-08
+ * Create Date: 2024-09-07
  * Description: Jenkins Pipeline Definition 
  */
 pipeline {
@@ -30,16 +30,16 @@ pipeline {
                 // sh './jenkins/test.sh'                
             }    
         }
-        post {
-            always {
-                echo 'Post always condition'
-            }
-            success {
-                echo 'Post success condition'
-            }    
-            failure {
-                mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed'
-            }
-        }
     }
+    post {
+        always {
+            echo 'Info: Post always condition'
+        }
+        success {
+            echo 'Info: Post success condition'
+        }    
+        failure {
+            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed'
+        }
+    }    
 }
