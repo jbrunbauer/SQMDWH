@@ -32,10 +32,13 @@ pipeline {
         }
         post {
             always {
-                echo 'Info: Post always condition'
+                echo 'Post always condition'
             }
+            success {
+                echo 'Post success condition'
+            }    
             failure {
-                mail to: jbrunbau@gmail.com, subject: 'Pipeline failed'
+                mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed'
             }
         }
     }
