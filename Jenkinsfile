@@ -11,7 +11,6 @@ pipeline {
         stage('Build') {
             steps {
                 /* Create Software Package and copy to Jira Folder, finally create docker test container */
-                echo 'Workspace ${env.WORKSPACE}'
                 echo 'Info: Build'
                 // sh './jenkins/build.sh'
             }    
@@ -37,6 +36,7 @@ pipeline {
         }
         success {
             echo 'Info: Post success condition'
+            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline succeeded', body: 'Pipeline succeeded'
         }    
         failure {
             mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed', body: 'Pipeline failed'
