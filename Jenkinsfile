@@ -19,14 +19,14 @@ pipeline {
             steps {
                 /* Push changes to Stage environment and compile code */
                 echo 'Info: Deploy'
-                // sh './jenkins/deploy.sh'                  
+                /* sh './jenkins/deploy.sh' */                  
             }    
         }         
         stage('Test') {
             steps {
                 /* Automated testing eg. by using utPLSQL, afterwards remove docker test container */
                 echo 'Info: Test'
-                // sh './jenkins/test.sh'                
+                /* sh './jenkins/test.sh' */                
             }    
         }
     }
@@ -36,10 +36,11 @@ pipeline {
         }
         success {
             echo 'Info: Post success condition'
-            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline succeeded', body: 'Pipeline succeeded'
+            /* mail to: 'jbrunbau@gmail.com', subject: 'Pipeline succeeded', body: 'Pipeline succeeded' */
         }    
         failure {
-            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed', body: 'Pipeline failed'
+            echo 'Info: Post failure condition'            
+            /* mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed', body: 'Pipeline failed' */
         }
     }    
 }
