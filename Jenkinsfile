@@ -29,6 +29,14 @@ pipeline {
                 echo 'Info: Test'
                 // sh './jenkins/test.sh'                
             }    
-        }   
+        }
+        post {
+            always {
+                echo 'Info: Post always condition'
+            }
+            failure {
+                mail to: jbrunbau@gmail.com, subject: 'Pipeline failed'
+            }
+        }
     }
 }
