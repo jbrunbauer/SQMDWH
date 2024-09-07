@@ -39,7 +39,7 @@ pipeline {
             echo 'Info: Post success condition'
         }    
         failure {
-            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed'
+            mail to: 'jbrunbau@gmail.com', subject: 'Pipeline failed', body: 'Pipeline failed'
         }
     }    
 }
