@@ -10,8 +10,8 @@ pipeline {
         docker { image 'liquibase/liquibase:4.29.2' }
     }
     tools {
-        docker 'latest'
-        jdk 'openJDK 17.0.12'
+        docker 'docker-latest'
+        /* jdk 'openJDK 17.0.12' */
     }    
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
