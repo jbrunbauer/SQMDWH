@@ -9,10 +9,11 @@ pipeline {
         /* Be sure that docker is installed on Jenkins Agent */
         docker { image 'liquibase/liquibase:4.29.2' }
     }
-    tools {
+    /* tools {
         docker 'docker-latest'
-        /* jdk 'openJDK 17.0.12' */
-    }    
+        jdk 'openJDK 17.0.12'
+    }  
+    */  
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
     stages {
