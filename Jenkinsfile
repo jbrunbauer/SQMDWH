@@ -5,7 +5,7 @@
  */
 pipeline {
     agent { 
-        node { label 'jenkins-agent1' } 
+        /* node { label 'jenkins-agent1' } */
         /* Be sure that docker is installed on Jenkins Agent */
         docker { image 'liquibase/liquibase:4.29.2' }
     }
