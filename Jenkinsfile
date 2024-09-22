@@ -1,10 +1,10 @@
 /**
  * Author:      Joachim Brunbauer
  * Create Date: 2024-09-07
- * Description: Jenkins Pipeline Definition 
+ * Description: Jenkins Declarative Pipeline Definition (more recent than scripted Pipelines)
  */
 pipeline {
-    agent { label 'agent1' }
+    agent { label 'jenkins-agent1' }
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
     stages {
@@ -12,6 +12,7 @@ pipeline {
             steps {
                 /* Create Software Package and copy to Jira Folder, finally create docker test container */
                 echo 'Info: Build'
+                checkout scmGit(branches: [[name: 'main']], browser: github('https://github.com/jbrunbauer/SQMDWH'), extensions: [lfs(), localBranch('main')], userRemoteConfigs: [[url: 'https://github.com/jbrunbauer/SQMDWH']])
                 // sh './jenkins/build.sh'
             }    
         }
