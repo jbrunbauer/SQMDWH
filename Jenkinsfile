@@ -6,8 +6,8 @@
 pipeline {
     agent { 
         /* node { label 'jenkins-agent1' } */
-        /* Be sure that docker is installed on Jenkins Agent */
-        docker { image 'liquibase/liquibase:4.29.2' }
+        /* docker { image 'liquibase/liquibase:4.29.2' } */
+        docker { image 'hello-world:latest' }
     }
     /* tools {
         docker 'docker-latest'
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 /* Check if we got liquibase in version 4.29.2 */
                 echo 'Info: Status'                
-                sh 'liquibase --version'
+                /* sh 'liquibase --version' */
                 /* sh 'liquibase status --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77' */
             }
         }
@@ -53,7 +53,7 @@ pipeline {
         always {
             echo 'Info: Post always condition'
             /* Clean up the Workspace */
-            /* cleanWs() */
+            cleanWs()
         }
         success {
             echo 'Info: Post success condition'
