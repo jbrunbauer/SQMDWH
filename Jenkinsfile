@@ -6,7 +6,7 @@
 pipeline {
     agent { 
         docker { 
-            image 'database/sqlcl:latest'
+            image 'database/sqlcl:24.1.0'
             registryUrl 'https://container-registry.oracle.com/'
             registryCredentialsId 'repo_orcl'
             args '-v jenkins_agent_workspace:/home/jenkins/Workspace --entrypoint='
