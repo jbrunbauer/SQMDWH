@@ -6,8 +6,8 @@
 pipeline {
     agent { 
         docker { 
-            image 'sqlcl:latest'
-            registryUrl 'https://container-registry.oracle.com/database/'
+            image '/database/sqlcl:latest'
+            registryUrl 'https://container-registry.oracle.com'
             registryCredentialsId 'repo_orcl'
             alwaysPull true
         }        
