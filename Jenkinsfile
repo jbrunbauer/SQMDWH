@@ -5,11 +5,12 @@
  */
 pipeline {
     agent { 
-        node { label 'jenkins-agent1' }
-        /* docker { image 'liquibase/liquibase:4.29.2' } */
-    }
-    environment {
-        repo_orcl = 'container-registry.oracle.com/database/'
+        /* node { label 'jenkins-agent1' } */
+        docker { 
+            image 'sqlcl:latest'
+            registryUrl 'https://container-registry.oracle.com/database/'
+            registryCredentialsId 'repo_orcl'
+        }        
     }
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
@@ -17,12 +18,7 @@ pipeline {
         stage('Init') {
             steps {
                 echo 'Info: Init'                
-                script {
-                    docker.withRegistry("https://$repo_orcl","repo_orcl") {
-                        // Pull SqlCl Docker image from Oracle Registry
-                        docker.image('sqlcl:latest').Pull()
-                    }
-                }
+                sh 'version'
                 /* Check if we got liquibase in version 4.29.2 */
                 /* sh 'liquibase --version' */
                 /* sh 'liquibase status --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77' */
