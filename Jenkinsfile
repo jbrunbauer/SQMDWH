@@ -6,11 +6,11 @@
 pipeline {
     agent { 
         docker { 
-            image '/database/sqlcl:latest'
-            registryUrl 'https://container-registry.oracle.com'
+            image 'database/sqlcl:latest'
+            registryUrl 'https://container-registry.oracle.com/'
             registryCredentialsId 'repo_orcl'
             alwaysPull true
-        }        
+        }      
     }
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
