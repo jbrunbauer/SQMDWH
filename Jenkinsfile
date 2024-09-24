@@ -18,16 +18,16 @@ pipeline {
     stages {
         stage('Init') {
             steps {
-                echo 'Info: Init'                
+                echo 'Info: Init'   
+                dir('DATABASE/HR') {
+                    script {
+                        def output = sh(returnStdout: true, script: 'pwd')
+                        echo "Output: ${output}"
+                    }
+                }                             
                 /* Check if we got liquibase in version 4.29.2 */
                 /* sh 'liquibase --version' */
                 /* sh 'liquibase status --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77' */
-            }
-            dir('DATABASE/HR') {
-                script {
-                    def output = sh(returnStdout: true, script: 'pwd')
-                    echo "Output: ${output}"
-                }
             }
         }
         stage('Build') {
