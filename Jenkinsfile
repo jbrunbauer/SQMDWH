@@ -19,7 +19,7 @@ pipeline {
         stage('Init') {
             steps {
                 echo 'Info: Init'                
-                sh 'cd HR'
+                sh 'cd DATABASE/HR'
                 script {
                     def output = sh(returnStdout: true, script: 'pwd')
                     echo "Output: ${output}"
