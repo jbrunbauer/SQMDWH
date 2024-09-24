@@ -19,7 +19,7 @@ pipeline {
         stage('Init') {
             steps {
                 echo 'Info: Init'                
-                sh 'version'
+                sh 'pwd'
                 /* Check if we got liquibase in version 4.29.2 */
                 /* sh 'liquibase --version' */
                 /* sh 'liquibase status --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77' */
