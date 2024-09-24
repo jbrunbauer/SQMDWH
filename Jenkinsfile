@@ -57,7 +57,7 @@ pipeline {
         always {
             echo 'Info: Post always condition'
             /* Clean up the Workspace */
-            cleanWs()
+            // cleanWs()
         }
         success {
             echo 'Info: Post success condition'
