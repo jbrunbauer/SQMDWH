@@ -5,11 +5,11 @@
  */
 pipeline {
     agent { 
-        /* node { label 'jenkins-agent1' } */
         docker { 
             image 'sqlcl:latest'
             registryUrl 'https://container-registry.oracle.com/database/'
             registryCredentialsId 'repo_orcl'
+            alwaysPull true
         }        
     }
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
