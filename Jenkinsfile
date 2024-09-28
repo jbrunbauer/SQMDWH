@@ -25,6 +25,7 @@ pipeline {
                     script {
                         def output = sh(returnStdout: true, script: 'pwd')
                         echo "Output: ${output}"
+                        sh 'sqlcl'
                         sh 'connect HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1'
                         sh 'version'
                     }
