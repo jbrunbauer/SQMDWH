@@ -1,1 +1,1 @@
-SELECT 'X' FROM DUAL;
+liquibase update-sql -changelog-file masterChangeLog.sql
