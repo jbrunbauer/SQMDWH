@@ -9,7 +9,8 @@ pipeline {
             image 'database/sqlcl:24.2.0'
             registryUrl 'https://container-registry.oracle.com/'
             registryCredentialsId 'repo_orcl'
-            args '-v jenkins_agent_workspace:/home/jenkins/workspace --entrypoint='
+            // args '-v jenkins_agent_workspace:/home/jenkins/workspace --entrypoint='
+            args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts'
             /* alwaysPull true */
         }      
     }
