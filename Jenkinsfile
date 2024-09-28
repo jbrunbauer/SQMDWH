@@ -40,9 +40,13 @@ pipeline {
                 // sh '/opt/oracle/sqlcl/bin/sql /nolog'
                 dir('JENKINS') {
                     // sh '/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 @deploy.sql'
+                    /*
                     sh '''/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 <<- _EOF_
                     liquibase update-sql -changelog-file ../DATABASE/masterChangeLog.sql;
 _EOF_'''
+*/
+                    sh '''/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 'liquibase update-sql -changelog-file ../DATABASE/masterChangeLog.sql;'
+'''
                     /* sh 'liquibase update --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77'
                     /* sh './jenkins/deploy.sh' */    
                 }                   
