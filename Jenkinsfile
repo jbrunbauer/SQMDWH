@@ -49,6 +49,7 @@ pipeline {
             agent {
                 docker {
                     image 'container-registry.oracle.com/database/sqlcl:24.2.0'
+                    args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts --entrypoint='
                     reuseNode true
                 }
             }    
