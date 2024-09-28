@@ -39,7 +39,10 @@ pipeline {
                 // sh 'docker run --rm --network="host" -v jenkins_agent_workspace:/opt/oracle/sql_scripts/ dcf14b45dfac HR/charly77@192.168.0.5:1521/ORCLPDB1'                                  
                 // sh '/opt/oracle/sqlcl/bin/sql /nolog'
                 dir('JENKINS') {
-                    sh '/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 @deploy.sql'
+                    // sh '/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 @deploy.sql'
+                    sh '''/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 <<- _EOF_
+                    liquibase update-sql -changelog-file ../DATABASE/masterChangeLog.sql;
+                    _EOF_ '''
                     /* sh 'liquibase update --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77'
                     /* sh './jenkins/deploy.sh' */    
                 }                   
