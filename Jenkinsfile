@@ -4,23 +4,24 @@
  * Description: Jenkins Declarative Pipeline Definition (more recent than scripted Pipelines)
  */
 pipeline {
-    agent { 
+    agent { label 'jenkins-agent1'
+        /*
         docker { 
             image 'database/sqlcl:24.2.0'
             registryUrl 'https://container-registry.oracle.com/'
             registryCredentialsId 'repo_orcl'
-            // args '-v jenkins_agent_workspace:/home/jenkins/workspace --entrypoint='
             args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts --entrypoint='
-            /* alwaysPull true */
-        }      
+        }
+        */      
     }
     options { buildDiscarder(logRotator (numToKeepStr: '5')) }
     
     stages {
         stage('Init') {
             steps {
-                echo 'Info: Init'   
+                echo 'Info: Init' 
                 // dir('DATABASE/HR') {
+                /*
                 dir('DATABASE') {
                     script {
                         def output = sh(returnStdout: true, script: 'pwd')
@@ -29,7 +30,8 @@ pipeline {
                         sh 'connect HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1'
                         sh 'version'
                     }
-                }                             
+                }   
+                */                          
                 /* Check if we got liquibase in version 4.29.2 */
                 /* sh 'liquibase --version' */
                 /* sh 'liquibase status --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77' */
@@ -47,6 +49,8 @@ pipeline {
             steps {
                 /* Push changes to Stage environment and compile code */
                 echo 'Info: Deploy'
+                sh 'docker run --rm -it -v jenkins_agent_workspace:/opt/oracle/sql_scripts/ dcf14b45dfac HR/charly77@192.168.0.5:1521/ORCLPDB1'                                  
+                sh 'version'
                 /* sh 'liquibase update --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77'
                 /* sh './jenkins/deploy.sh' */                  
             }    
