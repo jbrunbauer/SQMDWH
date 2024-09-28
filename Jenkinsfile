@@ -38,12 +38,10 @@ pipeline {
                 echo 'Info: Deploy'
                 // sh 'docker run --rm --network="host" -v jenkins_agent_workspace:/opt/oracle/sql_scripts/ dcf14b45dfac HR/charly77@192.168.0.5:1521/ORCLPDB1'                                  
                 // sh '/opt/oracle/sqlcl/bin/sql /nolog'
-                dir('JENKINS') {
-                    sh '/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 <<- _EOF_
-                    liquibase update-status -changelog-file ../DATABASE/masterChangeLog.xml;
-_EOF_'
-                    /* sh './jenkins/deploy.sh' */    
-                }                   
+                sh '''/opt/oracle/sqlcl/bin/sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 <<- _EOF_
+liquibase update-status -changelog-file ../DATABASE/masterChangeLog.xml;
+_EOF_'''
+                    /* sh './jenkins/deploy.sh' */                    
             }    
         }         
         stage('Test') {
