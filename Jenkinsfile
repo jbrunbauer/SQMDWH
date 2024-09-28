@@ -5,15 +5,8 @@
  */
 pipeline {
     agent { 
-        /*
         docker { 
-            image 'database/sqlcl:24.1.0'
-            registryUrl 'https://container-registry.oracle.com/'
-            registryCredentialsId 'repo_orcl'
-            args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts --entrypoint='
-        }
-        */
-        docker { 
+            // image 'database/sqlcl:24.1.0'
             image 'container-registry.oracle.com/database/sqlcl:24.1.0'
             // registryUrl 'https://container-registry.oracle.com/'
             // registryCredentialsId 'repo_orcl'
@@ -39,18 +32,7 @@ pipeline {
                 // sh './jenkins/build.sh'
             }    
         }
-        stage('Deploy') {
-            /*
-            agent {
-                docker {
-                    image 'container-registry.oracle.com/database/sqlcl:24.1.0'
-                    args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts --entrypoint='
-                    // Runs the container on the node specified at the top-level of the Pipeline,
-                    // in the same workspace, rather than on a new node entirely
-                    reuseNode true
-                }
-            }
-            */  
+        stage('Deploy') { 
             steps {
                 /* Push changes to Stage environment and compile code */
                 echo 'Info: Deploy'
