@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'Info: Init'   
                 // dir('DATABASE/HR') {
-                dir('DATABASE') {}
+                dir('DATABASE') {
                     script {
                         def output = sh(returnStdout: true, script: 'pwd')
                         echo "Output: ${output}"
