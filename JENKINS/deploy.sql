@@ -1,1 +1,1 @@
-liquibase update-sql -changelog-file masterChangeLog.sql
+liquibase update-sql -changelog-file DATABASE/masterChangeLog.sql
