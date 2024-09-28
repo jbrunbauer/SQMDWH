@@ -19,10 +19,13 @@ pipeline {
         stage('Init') {
             steps {
                 echo 'Info: Init'   
-                dir('DATABASE/HR') {
+                // dir('DATABASE/HR') {
+                dir('DATABASE') {}
                     script {
                         def output = sh(returnStdout: true, script: 'pwd')
                         echo "Output: ${output}"
+                        sh 'connect HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1'
+                        sh 'version'
                     }
                 }                             
                 /* Check if we got liquibase in version 4.29.2 */
