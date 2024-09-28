@@ -52,13 +52,14 @@ pipeline {
                     args '-v jenkins_agent_workspace:/opt/oracle/sql_scripts --entrypoint='
                     reuseNode true
                 }
-            }    
+            }  
             steps {
                 /* Push changes to Stage environment and compile code */
                 echo 'Info: Deploy'
                 // sh 'docker run --rm --network="host" -v jenkins_agent_workspace:/opt/oracle/sql_scripts/ dcf14b45dfac HR/charly77@192.168.0.5:1521/ORCLPDB1'                                  
-                sh '/opt/oracle/sqlcl/bin/sql /nolog'
-                sh 'version'
+                // sh '/opt/oracle/sqlcl/bin/sql /nolog'
+                sh 'cd /opt/oracle/sqlcl/bin'
+                sh 'sql HR/charly77@jdbc:oracle:thin:@//192.168.0.5:1521/ORCLPDB1 @test.sql'
                 // sh 'exit'
                 /* sh 'liquibase update --url="jdbc:oracle:thin:@//172.18.0.4:1521/ORCLPDB1" --changeLogFile=masterChangeLog.sql --username=HR --password=charly77'
                 /* sh './jenkins/deploy.sh' */                  
